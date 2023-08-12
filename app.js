@@ -1,5 +1,6 @@
-const app = require("express")(); // initialize application
-const routes = require("./routes");
+const express = require("express");
+const app = express(); // initialize application
+// const routes = require("./routes");
 
 app.use(express.json()); // parse json request body
 app.use(express.urlencoded({ extended: true })); // parse urlencoded request body
@@ -9,5 +10,5 @@ app.get("/", (req, res) => {
   res.status(200).send("welcome to my ticket booking api");
 });
 
-app.use("/", routes);
+// app.use("/", routes);
 module.exports = app;

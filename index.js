@@ -1,6 +1,8 @@
 const app = require('./app');
+const config = require("./config/config");
+const mysqldb = require("./config/mysqldb");
 
-const PORT = 8000;
+const PORT = process.env.PORT;
 
 app.listen(PORT, async (err) => {
     if (!err) {
