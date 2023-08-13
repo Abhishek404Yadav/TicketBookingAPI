@@ -1,4 +1,4 @@
-const Sequelize= require('sequelize');
+const Sequelize = require('sequelize');
 const config = require('./config');
 
 const DATABASE = config.sqlDbName;
@@ -7,15 +7,15 @@ const PASSWORD = config.sqlDbPassword;
 const HOST = "localhost";
 
 const sequelize = new Sequelize(DATABASE,USERNAME, PASSWORD,{
-    dialect : "mysql",
-    host : HOST,
-    pool : {
-        max: 10,
-        min : 0,
-        idle : 10000,
-    }
+  dialect : "mysql",
+  host : HOST,
+  pool : {
+    max: 10,
+    min : 0,
+    idle : 10000,
+  }
 });
-
+// function to connect to DataBase
 const connectToSqlDb = async function () {
     try {
       await sequelize.authenticate();
@@ -26,5 +26,5 @@ const connectToSqlDb = async function () {
   };
 module.exports = {
     sequelize,
-    connectToSqlDb
+    connectToSqlDb,
 };

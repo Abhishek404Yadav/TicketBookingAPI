@@ -1,6 +1,6 @@
 const app = require('./app');
 const config = require("./config/config");
-const mysqldb = require("./config/mysqldb");
+const mysqldb  = require("./config/mysqldb");
 
 const PORT = config.port;
 

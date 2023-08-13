@@ -1,6 +1,6 @@
 const { sequelize } = require("../config/mysqldb");
 const DataTypes = require("sequelize");
-const Timing  = require("./timing");
+const Timing  = require("./timing.model");
 
 const Theater = sequelize.define(
   "theater",
@@ -9,7 +9,7 @@ const Theater = sequelize.define(
       type: DataTypes.BIGINT,
       autoIncrement: true,
       allowNull: false,
-      PrimaryKey: true,
+      primaryKey: true,
     },
     name: {
       type: DataTypes.STRING,
@@ -34,7 +34,7 @@ Theater.belongsToMany(Movie, {
   foreignKey: "theaterId",
   through: { model: Timing, unique: false },
 })(
-  //Synching Table
+  //Syncing Table
   async () => {
     try {
       await Theater.sync({ force: true });

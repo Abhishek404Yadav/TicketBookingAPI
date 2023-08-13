@@ -1,6 +1,6 @@
 const { sequelize } = require("../config/mysqldb");
 const DataTypes = require("sequelize");
-const Theater  = require("./theater");
+const Theater = require("./theater.model");
 
 const Movie = sequelize.define(
   "movie",
@@ -9,7 +9,7 @@ const Movie = sequelize.define(
       type: DataTypes.BIGINT,
       autoIncrement: true,
       allowNull: false,
-      PrimaryKey: true,
+      primaryKey: true,
     },
     name: {
       type: DataTypes.STRING,
@@ -33,16 +33,15 @@ const Movie = sequelize.define(
 Movie.belongsToMany(Theater, {
   foreignKey: "movieId",
   through: { model: Timing, unique: false },
-})(
-  //Synching Table
-  async () => {
-    try {
-      await Movie.sync({ force: true });
-      console.log("table Added");
-    } catch (error) {
-      console.log("error:", error);
-    }
+});
+//Syncing Table
+(async () => {
+  try {
+    await Movie.sync({ force: true });
+    console.log("table Added");
+  } catch (error) {
+    console.log("error:", error);
   }
-)();
+})();
 
-module.exports = Movie ;
+module.exports = Movie;

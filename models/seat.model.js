@@ -18,7 +18,7 @@ const Seat = sequelize.define(
     timestamps: false,
   }
 );
-//Synching Table
+//Syncing Table
 (async () => {
   try {
     await Theater.sync({ force: true });

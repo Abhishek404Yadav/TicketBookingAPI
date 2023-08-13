@@ -1,6 +1,6 @@
 const { sequelize } = require("../config/mysqldb");
 const DataTypes = require("sequelize");
-const  Screen  = require("./screen");
+const Screen = require("./screen.model");
 
 const Timing = sequelize.define(
   "timing",
@@ -28,16 +28,15 @@ const Timing = sequelize.define(
 Timing.belongsToMany(Screen, {
   foreignKey: "timingId",
   through: { model: Seat, unique: false },
-})(
-  //Synching Table
-  async () => {
-    try {
-      await Timing.sync({ force: true });
-      console.log("table Added");
-    } catch (error) {
-      console.log("error:", error);
-    }
+});
+//Syncing Table
+(async () => {
+  try {
+    await Timing.sync({ force: true });
+    console.log("table Added");
+  } catch (error) {
+    console.log("error:", error);
   }
-)();
+})();
 
 module.exports = Timing;
