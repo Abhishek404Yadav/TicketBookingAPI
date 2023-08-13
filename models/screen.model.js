@@ -4,7 +4,7 @@ const Timing = require("./timing.model");
 const Seat = require("./theater.model");
 
 const Screen = sequelize.define(
-  "screen",
+  "Screen",
   {
     id: {
       type: DataTypes.BIGINT,
@@ -23,13 +23,22 @@ const Screen = sequelize.define(
   }
 );
 
-// Many to many with Timing using Seat
+//-----Association-----
+// Many to many with (Screen->Timing) using Seat
 Screen.belongsToMany(Timing, {
   foreignKey: "screenId",
-  through: { model: Seat, unique: false },
+  through: Seat, 
+  unique: false,
 });
 
-// Syncing Table
+// Many to many with (Timing->Screen) using Seat
+Timing.belongsToMany(Screen, {
+    foreignKey: "timingId",
+    through: Seat, 
+    unique: false
+  });
+
+//-----Syncing Table-----
 (async () => {
   try {
     await Screen.sync({ force: true });

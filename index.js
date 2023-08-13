@@ -1,8 +1,10 @@
 const app = require('./app');
 const config = require("./config/config");
 const mysqldb  = require("./config/mysqldb");
+const Movie = require('./models/movie.model')
 
 const PORT = config.port;
+
 
 app.listen(PORT, async (err) => {
     if (!err) {

@@ -7,6 +7,8 @@ const Seat = sequelize.define(
     seatNumber: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
     },
     isBooked: {
       type: DataTypes.BOOLEAN,
@@ -14,15 +16,15 @@ const Seat = sequelize.define(
     },
   },
   {
-    freezeTableName: false,
+    freezeTableName: true,
     timestamps: false,
   }
 );
 //Syncing Table
 (async () => {
   try {
-    await Theater.sync({ force: true });
-    console.log("table Added");
+    await Seat.sync({ force: true });
+    console.log("Seat table Added");
   } catch (error) {
     console.log("error:", error);
   }

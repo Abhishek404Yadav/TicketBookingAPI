@@ -1,9 +1,10 @@
 const { sequelize } = require("../config/mysqldb");
 const DataTypes = require("sequelize");
-const Timing  = require("./timing.model");
+const Timing = require("./timing.model");
+const Movie = require("./movie.model");
 
 const Theater = sequelize.define(
-  "theater",
+  "Theater",
   {
     id: {
       type: DataTypes.BIGINT,
@@ -29,20 +30,29 @@ const Theater = sequelize.define(
     timestamps: false,
   }
 );
-// Many to many with Movie using Timing
+
+//-----Association-----
+// Many to many Relation with (Movie->Theater) using Timing
 Theater.belongsToMany(Movie, {
   foreignKey: "theaterId",
-  through: { model: Timing, unique: false },
-})(
-  //Syncing Table
-  async () => {
-    try {
-      await Theater.sync({ force: true });
-      console.log("table Added");
-    } catch (error) {
-      console.log("error:", error);
-    }
+  through: Timing,
+  unique: false,
+});
+// Many to many Relation with (Theater->Movie) using Timing
+Movie.belongsToMany(Theater, {
+  foreignKey: "movieId",
+  through: Timing,
+  unique: false,
+});
+
+//------Syncing Table-------
+(async () => {
+  try {
+    await Theater.sync({ force: true });
+    console.log("Theater table Added");
+  } catch (error) {
+    console.log("error:", error);
   }
-)();
+})();
 
 module.exports = Theater;
