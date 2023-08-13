@@ -25,7 +25,7 @@ const Movie = sequelize.define(
     },
   },
   {
-    freezeTableName: false,
+    freezeTableName: true,
     timestamps: false,
   }
 );
@@ -33,7 +33,7 @@ const Movie = sequelize.define(
 //Syncing Table
 (async () => {
   try {
-    await Movie.sync({ force: true });
+    await Movie.sync();
     console.log("Movie table Added");
   } catch (error) {
     console.log("error:", error);

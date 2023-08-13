@@ -26,7 +26,7 @@ const Theater = sequelize.define(
     },
   },
   {
-    freezeTableName: false,
+    freezeTableName: true,
     timestamps: false,
   }
 );

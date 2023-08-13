@@ -18,7 +18,7 @@ const Screen = sequelize.define(
     },
   },
   {
-    freezeTableName: false,
+    freezeTableName: true,
     timestamps: false,
   }
 );
