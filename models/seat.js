@@ -28,4 +28,4 @@ const Seat = sequelize.define(
   }
 })();
 
-module.exports = { Seat };
+module.exports = Seat;

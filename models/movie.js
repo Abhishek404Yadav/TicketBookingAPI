@@ -1,6 +1,6 @@
 const { sequelize } = require("../config/mysqldb");
 const DataTypes = require("sequelize");
-const { Theater } = require("./theater");
+const Theater  = require("./theater");
 
 const Movie = sequelize.define(
   "movie",
@@ -45,4 +45,4 @@ Movie.belongsToMany(Theater, {
   }
 )();
 
-module.exports = { Movie };
+module.exports = Movie ;

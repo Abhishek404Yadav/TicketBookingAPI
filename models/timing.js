@@ -1,6 +1,6 @@
 const { sequelize } = require("../config/mysqldb");
 const DataTypes = require("sequelize");
-const { Screen } = require("./screen");
+const  Screen  = require("./screen");
 
 const Timing = sequelize.define(
   "timing",
@@ -40,4 +40,4 @@ Timing.belongsToMany(Screen, {
   }
 )();
 
-module.exports = { Timing };
+module.exports = Timing;
