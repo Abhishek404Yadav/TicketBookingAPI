@@ -1,5 +1,6 @@
 const { sequelize } = require("../config/mysqldb");
 const DataTypes = require("sequelize");
+
 const Screen = sequelize.define(
   "Screen",
   {

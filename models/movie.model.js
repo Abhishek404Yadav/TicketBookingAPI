@@ -1,7 +1,5 @@
 const { sequelize } = require("../config/mysqldb");
 const DataTypes = require("sequelize");
-const Theater = require('./theater.model');
-const ShowTime = require("./showtime.model");
 
 const Movie = sequelize.define(
   "Movie",
