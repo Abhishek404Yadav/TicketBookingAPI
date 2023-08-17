@@ -6,15 +6,23 @@ const Screen = require('./screen.model');
 const Seat = sequelize.define(
   "Seat",
   {
-    seatNumber: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+    id: {
+      type: DataTypes.BIGINT,
       autoIncrement: true,
+      allowNull: false,
       primaryKey: true,
     },
-    isBooked: {
+    row: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    number: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    isAvailable: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false,
+      defaultValue: true,
     },
   },
   {

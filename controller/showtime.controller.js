@@ -21,7 +21,7 @@ const generateTime = (time_str) => {
   return formattedTime;
 };
 
-const addTimingsToScreen = async (req, res) => {
+const addShowTime = async (req, res) => {
   const theater = await Theater.findByPk(req.body.theaterId);
   const movie = await Movie.findByPk(req.body.movieId);
 
@@ -30,8 +30,6 @@ const addTimingsToScreen = async (req, res) => {
     movieId: movie.id,
     theatreId: theater.id,
   });
-  await theater.addMovie(movie);
-  await movie.addTheatre(theater);
   return res.status(201).json(time);
 };
 
@@ -48,4 +46,4 @@ const getAllTiming = async (req, res) => {
   }
 };
 
-module.exports = { getAllTiming, addTimingsToScreen };
+module.exports = { getAllTiming, addShowTime };

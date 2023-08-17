@@ -10,20 +10,12 @@ const addMovie = async (request, response) => {
   const { name, language, runtime } =
     request.body;
 
-  const movie = Movie.build({
+  const movie = await Movie.create({
     name,
     language,
     runtime,
   });
-
-  await movie
-    .save()
-    .then(function (success) {
-      response.status(201).json(success);
-    })
-    .catch(function (error) {
-      response.json(error);
-    });
+  return response.status(201).json(movie);
 };
 
 module.exports = {
