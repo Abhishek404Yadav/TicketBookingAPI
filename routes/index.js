@@ -14,6 +14,6 @@ const screenRoute = require("./screen.route");
 router.use("/screen",screenRoute);
 
 const seatRoute = require("./seat.route");
-router.use("./:screenId/:timingId/seat",seatRoute);
+router.use("/seat/:screenId/:timingId",seatRoute);
 
 module.exports = router;
